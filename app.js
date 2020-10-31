@@ -1,21 +1,16 @@
 'use strict';
 
-// フィボナッチ数列
-// F0 = 0
-// F1 = 1
-// Fn+2 = Fn + Fn+1 (n >= 0)
+const memo = new Map();
+memo.set(0, 0);
+memo.set(1, 1);
 
 function fib(n) {  
-    if (n === 0) {
-        return 0;
+    if (memo.has(n)) {
+        return memo.get(n);
     }
-    else if (n === 1) {
-        return 1;
-    }
-    else {
-        return fib(n - 1) + fib(n - 2);
-    }
-    // return null;
+    const value = fib(n - 1) + fib(n - 2);
+    memo.set(n, value);
+    return value;    
 }
 
 const length = 40;
